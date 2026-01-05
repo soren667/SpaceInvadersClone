@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://bty2uwdoivhwm"]
+
+[ext_resource type="Script" uid="uid://djm2x0bmjulq5" path="res://Scripts/UI/main_menu.gd" id="1_hii65"]
+[ext_resource type="FontFile" uid="uid://bhre85bcv1437" path="res://Assets/Font/PixelOperator8-Bold.ttf" id="2_hii65"]
+[ext_resource type="PackedScene" uid="uid://cj7eqmw0ugsr7" path="res://Scene/options_menu.tscn" id="2_kqsxi"]
+[ext_resource type="Script" uid="uid://b3hk8tkerws6n" path="res://Scripts/UI/ui_button_animations.gd" id="4_kqsxi"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hii65")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07487897, 0.07090234, 0.09566016, 1)
+
+[node name="GameLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -542.5
+offset_top = 44.0
+offset_right = 596.5
+offset_bottom = 245.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0.18759155, 0.6646929, 0.31298175, 0.72156864)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_hii65")
+theme_override_font_sizes/font_size = 78
+text = "SPACE INVADERS"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="OptionsMenu" parent="CenterContainer" instance=ExtResource("2_kqsxi")]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_hii65")
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_hii65")
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_hii65")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[node name="ButtonAnimations" type="Node" parent="CenterContainer/VBoxContainer"]
+script = ExtResource("4_kqsxi")
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/SettingsButton" to="CenterContainer/OptionsMenu" method="show_menu"]

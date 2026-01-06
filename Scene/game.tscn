@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://0lk16i5kpia5"]
+[gd_scene load_steps=5 format=3 uid="uid://0lk16i5kpia5"]
 
 [ext_resource type="PackedScene" uid="uid://bo58kyhqu1rgw" path="res://Scene/player.tscn" id="1_mhtsl"]
-[ext_resource type="Script" uid="uid://m6lb3f7pfbat" path="res://Scene/game.gd" id="1_w51g1"]
+[ext_resource type="Script" uid="uid://m6lb3f7pfbat" path="res://Scripts/game.gd" id="1_w51g1"]
+[ext_resource type="Shader" uid="uid://bolux8r4djyl3" path="res://Scripts/CRT.gdshader" id="3_4jv7b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_03iqk"]
+shader = ExtResource("3_4jv7b")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 0.5
+shader_parameter/warp_amount = 0.05
+shader_parameter/vignette_amount = 0.5
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/grille_amount = 0.05
+shader_parameter/brightness_boost = 1.2
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_w51g1")
@@ -14,3 +25,15 @@ color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_mhtsl")]
 position = Vector2(538, 631)
+
+[node name="PostFX" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="PostFX"]
+material = SubResource("ShaderMaterial_03iqk")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

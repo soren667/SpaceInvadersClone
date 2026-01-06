@@ -30,8 +30,8 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -542.5
 offset_top = 44.0
-offset_right = 596.5
-offset_bottom = 245.0
+offset_right = 503.0
+offset_bottom = 142.0
 grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0.18759155, 0.6646929, 0.31298175, 0.72156864)
 theme_override_constants/shadow_offset_x = 2
@@ -39,6 +39,7 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("2_hii65")
 theme_override_font_sizes/font_size = 78
 text = "SPACE INVADERS"
+horizontal_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -59,21 +60,21 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_hii65")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_hii65")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "Settings"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_hii65")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "Quit"
 
 [node name="ButtonAnimations" type="Node" parent="CenterContainer/VBoxContainer"]

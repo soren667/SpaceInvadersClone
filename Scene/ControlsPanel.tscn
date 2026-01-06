@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://4mk1arcwpt7d"]
+
+[ext_resource type="FontFile" uid="uid://ceg0ttv5rstj5" path="res://Assets/Font/PixelOperator8.ttf" id="1_f5k1l"]
+[ext_resource type="Script" uid="uid://bud28brercgl" path="res://Scripts/UI/controls_panel.gd" id="1_i02pe"]
+[ext_resource type="Texture2D" uid="uid://u5ocaxji1isn" path="res://Assets/Sprites/UI/keyboard_a_outline.png" id="2_kf6jm"]
+[ext_resource type="Texture2D" uid="uid://dtg8q8tu8d4ji" path="res://Assets/Sprites/UI/keyboard_d_outline.png" id="3_5y3rt"]
+[ext_resource type="Texture2D" uid="uid://cnp66ovva3fnc" path="res://Assets/Sprites/UI/mouse_left_outline.png" id="7_gfmh0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i02pe"]
+bg_color = Color(0.87058824, 0.87058824, 0.87058824, 0)
+border_color = Color(0.7372549, 0.90588236, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="ControlsPanel" type="PanelContainer"]
+offset_right = 156.0
+offset_bottom = 248.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i02pe")
+script = ExtResource("1_i02pe")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MoveControl" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MoveControl"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CenterContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MoveControl/VBoxContainer"]
+layout_mode = 2
+
+[node name="KeyA" type="TextureRect" parent="MarginContainer/VBoxContainer/MoveControl/VBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_kf6jm")
+
+[node name="KeyD" type="TextureRect" parent="MarginContainer/VBoxContainer/MoveControl/VBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_5y3rt")
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/MoveControl/VBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/VBoxContainer/MoveControl/VBoxContainer"]
+layout_mode = 2
+
+[node name="MoveLabel" type="Label" parent="MarginContainer/VBoxContainer/MoveControl/VBoxContainer/CenterContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_f5k1l")
+theme_override_font_sizes/font_size = 32
+text = "MOVE"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MoveControl2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ShootControl" type="CenterContainer" parent="MarginContainer/VBoxContainer/MoveControl2"]
+layout_mode = 2
+
+[node name="MouseIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/MoveControl2/ShootControl"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("7_gfmh0")
+
+[node name="ShootLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_f5k1l")
+theme_override_font_sizes/font_size = 32
+text = "SHOOT"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://0lk16i5kpia5"]
+[gd_scene load_steps=6 format=3 uid="uid://0lk16i5kpia5"]
 
 [ext_resource type="PackedScene" uid="uid://bo58kyhqu1rgw" path="res://Scene/player.tscn" id="1_mhtsl"]
 [ext_resource type="Script" uid="uid://m6lb3f7pfbat" path="res://Scripts/game.gd" id="1_w51g1"]
+[ext_resource type="PackedScene" uid="uid://4mk1arcwpt7d" path="res://Scene/ControlsPanel.tscn" id="3_03iqk"]
 [ext_resource type="Shader" uid="uid://bolux8r4djyl3" path="res://Scripts/CRT.gdshader" id="3_4jv7b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_03iqk"]
@@ -26,7 +27,14 @@ color = Color(0, 0, 0, 1)
 [node name="Player" parent="." instance=ExtResource("1_mhtsl")]
 position = Vector2(538, 631)
 
+[node name="ControlsPanel" parent="." instance=ExtResource("3_03iqk")]
+offset_left = 469.0
+offset_top = 262.0
+offset_right = 625.0
+offset_bottom = 510.0
+
 [node name="PostFX" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="PostFX"]
 material = SubResource("ShaderMaterial_03iqk")

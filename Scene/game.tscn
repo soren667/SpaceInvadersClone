@@ -25,6 +25,32 @@ shader_parameter/brightness_boost = 1.2
 [node name="Game" type="Node2D"]
 script = ExtResource("1_w51g1")
 
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="ControlsPanel" parent="UI" instance=ExtResource("3_03iqk")]
+z_index = 10
+offset_left = 469.0
+offset_top = 262.0
+offset_right = 625.0
+offset_bottom = 510.0
+
+[node name="Hud" parent="UI" instance=ExtResource("9_c6b8m")]
+
+[node name="PostFX" type="CanvasLayer" parent="UI"]
+layer = 100
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="UI/PostFX"]
+material = SubResource("ShaderMaterial_03iqk")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [node name="Gameplay" type="Node2D" parent="."]
 
 [node name="Background" type="ColorRect" parent="Gameplay"]
@@ -42,29 +68,3 @@ position = Vector2(538, 631)
 position = Vector2(240, 133)
 enemy_scene = ExtResource("2_thj8p")
 row_types = Array[ExtResource("6_c6b8m")]([ExtResource("8_ha7wd"), ExtResource("7_0ka5k"), ExtResource("3_h8jt7")])
-
-[node name="UI" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Hud" parent="UI" instance=ExtResource("9_c6b8m")]
-
-[node name="ControlsPanel" parent="UI" instance=ExtResource("3_03iqk")]
-z_index = 100
-offset_left = 469.0
-offset_top = 262.0
-offset_right = 625.0
-offset_bottom = 510.0
-
-[node name="PostFX" type="CanvasLayer" parent="UI"]
-layer = 3
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="UI/PostFX"]
-material = SubResource("ShaderMaterial_03iqk")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)

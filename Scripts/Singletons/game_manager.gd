@@ -97,7 +97,7 @@ func add_score(points: int) -> void:
 
 	_score = mini(_score + points, max_score)
 	score_changed.emit(_score)
-
+	print("Added Points: " + str(points))
 	# Auto-update high score
 	if _score > _high_score:
 		_high_score = mini(_score, max_score)

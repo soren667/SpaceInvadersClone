@@ -1,7 +1,7 @@
 extends Node2D
 
 var bullet_scene = preload("res://Scene/bullet.tscn")
-@onready var player = $Player
+@onready var player = %Player
 
 func _ready() -> void:
 	GameManager.start_game()

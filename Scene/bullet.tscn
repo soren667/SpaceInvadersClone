@@ -6,6 +6,8 @@
 size = Vector2(4, 20)
 
 [node name="Bullet" type="Area2D"]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_w63l4")
 
 [node name="Visual" type="ColorRect" parent="."]

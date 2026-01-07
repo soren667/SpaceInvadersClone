@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://ci2grhr2g6ddx"]
+
+[ext_resource type="Script" uid="uid://davyh5uyt5gno" path="res://Scripts/enemy_stats.gd" id="1_yxl40"]
+[ext_resource type="Texture2D" uid="uid://eq6kxkqyiry3" path="res://Assets/Sprites/red.png" id="2_bu6yw"]
+
+[resource]
+script = ExtResource("1_yxl40")
+texture = ExtResource("2_bu6yw")
+max_hp = 3
+points = 30
+metadata/_custom_type_script = "uid://davyh5uyt5gno"

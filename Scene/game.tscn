@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://0lk16i5kpia5"]
+[gd_scene load_steps=13 format=3 uid="uid://0lk16i5kpia5"]
 
 [ext_resource type="PackedScene" uid="uid://bo58kyhqu1rgw" path="res://Scene/player.tscn" id="1_mhtsl"]
 [ext_resource type="Script" uid="uid://m6lb3f7pfbat" path="res://Scripts/game.gd" id="1_w51g1"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://davyh5uyt5gno" path="res://Scripts/enemy_stats.gd" id="6_c6b8m"]
 [ext_resource type="Resource" uid="uid://c6gms4ekvt68q" path="res://Resource/yellow_enemy.tres" id="7_0ka5k"]
 [ext_resource type="Resource" uid="uid://ci2grhr2g6ddx" path="res://Resource/red_enemy.tres" id="8_ha7wd"]
+[ext_resource type="PackedScene" uid="uid://djj3y0tqpsivf" path="res://Scene/hud.tscn" id="9_c6b8m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_03iqk"]
 shader = ExtResource("3_4jv7b")
@@ -44,6 +45,8 @@ row_types = Array[ExtResource("6_c6b8m")]([ExtResource("8_ha7wd"), ExtResource("
 
 [node name="UI" type="CanvasLayer" parent="."]
 visible = false
+
+[node name="Hud" parent="UI" instance=ExtResource("9_c6b8m")]
 
 [node name="ControlsPanel" parent="UI" instance=ExtResource("3_03iqk")]
 z_index = 100

@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://c6gms4ekvt68q"]
 
 [ext_resource type="Script" uid="uid://davyh5uyt5gno" path="res://Scripts/enemy_stats.gd" id="1_iknwj"]
-[ext_resource type="Texture2D" uid="uid://cbjh0hicna8u2" path="res://Assets/Sprites/yellow.png" id="2_3lmun"]
+[ext_resource type="SpriteFrames" uid="uid://dl7ygep1y0rp0" path="res://Assets/Sprites/yellow_enemy_frames.tres" id="2_3lmun"]
 
 [resource]
 script = ExtResource("1_iknwj")
-texture = ExtResource("2_3lmun")
+sprite_frames = ExtResource("2_3lmun")
 max_hp = 2
 points = 20
 metadata/_custom_type_script = "uid://davyh5uyt5gno"

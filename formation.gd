@@ -4,17 +4,20 @@ class_name Formation
 @export var enemy_scene: PackedScene
 @export var row_types: Array[EnemyStats] # size >= rows recommended
 
+@export var hit_fx_scene: PackedScene
+@export var death_fx_scene: PackedScene
+
 @export var rows := 5
 @export var cols := 11
-@export var cell_size := Vector2(32, 28)
+@export var cell_size := Vector2(52, 52) # Spacing of the enemy sprites in the formation
 @export var start_local := Vector2(80, 80)
 
-@export var step_x := 10.0
+@export var step_x := 20.0
 @export var step_down := 16.0
 @export var left_margin := 16.0
 @export var right_margin := 16.0
 
-@export var base_interval := 0.6
+@export var base_interval := 0.5
 @export var min_interval := 0.08
 
 var _dir := 1
@@ -41,10 +44,30 @@ func _spawn_grid() -> void:
 			e.position = start_local + Vector2(c * cell_size.x, r * cell_size.y)
 			add_child(e)
 
+			e.hit.connect(_on_enemy_hit)
 			e.died.connect(_on_enemy_died)
 			_alive += 1
 
 	_total = _alive
+
+func _on_enemy_hit(at: Vector2) -> void:
+	AudioManager.play_sfx("impact", 0.3)
+	_spawn_fx(hit_fx_scene, at)
+	
+
+func _on_enemy_died(points: int, at: Vector2) -> void:
+	AudioManager.play_sfx("explode", 0.2)
+	GameManager.add_score(points)
+	_alive -= 1
+
+	_spawn_fx(death_fx_scene, at)
+
+	var t := float(_alive) / float(_total)
+	_timer.wait_time = lerpf(min_interval, base_interval, t)
+	_timer.start()
+
+	if _alive <= 0:
+		GameManager.complete_level()
 
 func _on_step() -> void:
 	if _alive <= 0:
@@ -98,13 +121,18 @@ func _compute_local_bounds() -> Rect2:
 	var size := Vector2((max_x - min_x) + cell_size.x, (max_y - min_y) + cell_size.y)
 	return Rect2(pos, size)
 
-func _on_enemy_died() -> void:
-	_alive -= 1
+func _spawn_fx(scene: PackedScene, at: Vector2) -> void:
+		if scene == null:
+			return
 
-	# Speed-up: fewer alive => faster ticks
-	var t := float(_alive) / float(_total) # 1.0 -> 0.0
-	_timer.wait_time = lerpf(min_interval, base_interval, t)
-	_timer.start() # restart timer to apply wait_time immediately
+		var fx := scene.instantiate() as Node2D
+		if fx == null:
+			return
 
-	if _alive <= 0:
-		GameManager.complete_level()
+		fx.global_position = at
+
+		var fx_parent := get_tree().get_first_node_in_group("fx")
+		if fx_parent != null:
+			fx_parent.add_child(fx)
+		else:
+			get_tree().current_scene.add_child(fx)

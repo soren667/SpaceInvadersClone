@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://djj3y0tqpsivf"]
+
+[ext_resource type="Script" uid="uid://dpjqnyi6jejfb" path="res://Scripts/hud.gd" id="1_3quw2"]
+[ext_resource type="Texture2D" uid="uid://dc22662vsruf8" path="res://Assets/Sprites/player.png" id="2_et0hg"]
+[ext_resource type="FontFile" uid="uid://ceg0ttv5rstj5" path="res://Assets/Font/PixelOperator8.ttf" id="2_fmoiy"]
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_3quw2")
+life_icon = ExtResource("2_et0hg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 44.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LivesDisplay" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fmoiy")
+theme_override_font_sizes/font_size = 32
+text = "SCORE"
+
+[node name="ScoreValue" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fmoiy")
+theme_override_font_sizes/font_size = 32
+text = "000000"
+
+[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HiScoreLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fmoiy")
+theme_override_font_sizes/font_size = 32
+text = "SCORE"
+
+[node name="HiScoreValue" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fmoiy")
+theme_override_font_sizes/font_size = 32
+text = "000000"

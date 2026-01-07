@@ -18,5 +18,5 @@ func _physics_process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 
 	if area.has_method("take_damage"):
-		area.call("take_damage", damage)
+		area.call("take_damage", damage, global_position)
 		queue_free()

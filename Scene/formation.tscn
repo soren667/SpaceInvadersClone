@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://gd67rv8itfht"]
+[gd_scene load_steps=4 format=3 uid="uid://gd67rv8itfht"]
 
 [ext_resource type="Script" uid="uid://dhr7udu0q881o" path="res://formation.gd" id="1_b0wce"]
+[ext_resource type="PackedScene" uid="uid://c68p0pqwc8ob0" path="res://Scene/hit_spark.tscn" id="2_4fyhg"]
+[ext_resource type="PackedScene" uid="uid://4t0fwexdu1kb" path="res://Scene/deathring.tscn" id="3_q12gl"]
 
 [node name="Formation" type="Node2D"]
 script = ExtResource("1_b0wce")
+hit_fx_scene = ExtResource("2_4fyhg")
+death_fx_scene = ExtResource("3_q12gl")
 
 [node name="StepTimer" type="Timer" parent="."]
 unique_name_in_owner = true

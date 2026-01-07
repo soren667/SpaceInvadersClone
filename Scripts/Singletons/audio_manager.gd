@@ -23,6 +23,8 @@ var ui_sounds = {
 	"hover": preload("res://Assets/Sounds/hover.ogg"),
 	"click": preload("res://Assets/Sounds/click.ogg"),
 	"tick": preload("res://Assets/Sounds/glass_002.ogg"),
+	"explode": preload("res://Assets/Sounds/explosionCrunch_000.ogg"),
+	"impact": preload("res://Assets/Sounds/impactMetal_003.ogg")
 }
 
 func _ready() -> void:

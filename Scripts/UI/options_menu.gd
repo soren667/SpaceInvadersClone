@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var music_slider: HSlider = %MusicSlider
 @onready var sfx_slider: HSlider = %SFXSlider
 @onready var back_button: Button = %OptionsBackButton
+@onready var sfx_check_box: CheckBox = %SFXCheckBox
 
 var active_tween: Tween
 
@@ -19,6 +20,7 @@ func _setup_signals() -> void:
 	music_slider.value_changed.connect(_on_volume_changed.bind("music"))
 	sfx_slider.value_changed.connect(_on_volume_changed.bind("sfx"))
 	back_button.pressed.connect(_on_back_pressed)
+	sfx_check_box.toggled.connect(_on_sfx_changed)
 
 # --- Visibility ---
 
@@ -74,3 +76,6 @@ func _on_back_pressed() -> void:
 	})
 
 	hide_menu()
+	
+func _on_sfx_changed(value: bool ) -> void:
+	print("SFX Value:" + str(value))

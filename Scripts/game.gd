@@ -35,7 +35,7 @@ func _on_pause_quit() -> void:
 	get_tree().change_scene_to_file(main_menu_scene)
 
 func _go_menu() -> void:
-	GameManager.set_paused(true)
+	GameManager.set_paused(false)
 	get_tree().change_scene_to_file(main_menu_scene)
 
 func _on_level_complete() -> void:

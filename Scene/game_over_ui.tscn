@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0xclh3ed438d"]
+[gd_scene load_steps=5 format=3 uid="uid://d0xclh3ed438d"]
 
 [ext_resource type="Script" uid="uid://clvusr8160oti" path="res://Scripts/UI/game_over_ui.gd" id="1_0f7hw"]
 [ext_resource type="FontFile" uid="uid://bhre85bcv1437" path="res://Assets/Font/PixelOperator8-Bold.ttf" id="1_ujand"]
 [ext_resource type="FontFile" uid="uid://ceg0ttv5rstj5" path="res://Assets/Font/PixelOperator8.ttf" id="2_0f7hw"]
+[ext_resource type="Script" uid="uid://b3hk8tkerws6n" path="res://Scripts/UI/ui_button_animations.gd" id="4_oqm04"]
 
 [node name="GameOverUI" type="CanvasLayer"]
 script = ExtResource("1_0f7hw")
@@ -53,3 +54,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_0f7hw")
 theme_override_font_sizes/font_size = 32
 text = "Quit"
+
+[node name="ButtonAnimations" type="Node" parent="VBoxContainer"]
+script = ExtResource("4_oqm04")

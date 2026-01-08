@@ -7,6 +7,7 @@ signal died(points: int, at: Vector2)
 @export var stats: EnemyStats
 
 var _hp: int = 1
+var col: int = -1
 
 @onready var _anim: AnimatedSprite2D = %EnemyAnimatedSprite2D
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://0lk16i5kpia5"]
+[gd_scene load_steps=15 format=3 uid="uid://0lk16i5kpia5"]
 
 [ext_resource type="PackedScene" uid="uid://bo58kyhqu1rgw" path="res://Scene/player.tscn" id="1_mhtsl"]
 [ext_resource type="Script" uid="uid://m6lb3f7pfbat" path="res://Scripts/game.gd" id="1_w51g1"]
@@ -6,24 +6,25 @@
 [ext_resource type="PackedScene" uid="uid://4mk1arcwpt7d" path="res://Scene/ControlsPanel.tscn" id="3_03iqk"]
 [ext_resource type="Shader" uid="uid://bolux8r4djyl3" path="res://Scripts/CRT.gdshader" id="3_4jv7b"]
 [ext_resource type="Resource" uid="uid://diqlcmugsm5e6" path="res://Resource/green_enemy.tres" id="3_h8jt7"]
+[ext_resource type="PackedScene" uid="uid://d0xclh3ed438d" path="res://Scene/game_over_ui.tscn" id="5_0ka5k"]
 [ext_resource type="PackedScene" uid="uid://gd67rv8itfht" path="res://Scene/formation.tscn" id="5_twwsd"]
 [ext_resource type="Script" uid="uid://davyh5uyt5gno" path="res://Scripts/enemy_stats.gd" id="6_c6b8m"]
+[ext_resource type="PackedScene" uid="uid://ly11eq2k04xj" path="res://Scene/win_ui.tscn" id="6_ha7wd"]
 [ext_resource type="Resource" uid="uid://c6gms4ekvt68q" path="res://Resource/yellow_enemy.tres" id="7_0ka5k"]
 [ext_resource type="Resource" uid="uid://ci2grhr2g6ddx" path="res://Resource/red_enemy.tres" id="8_ha7wd"]
 [ext_resource type="PackedScene" uid="uid://djj3y0tqpsivf" path="res://Scene/hud.tscn" id="9_c6b8m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_03iqk"]
 shader = ExtResource("3_4jv7b")
-shader_parameter/resolution = Vector2(320, 180)
 shader_parameter/scan_line_amount = 0.5
 shader_parameter/warp_amount = 0.05
 shader_parameter/vignette_amount = 0.5
-shader_parameter/vignette_intensity = 0.3
 shader_parameter/grille_amount = 0.05
 shader_parameter/brightness_boost = 1.2
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_w51g1")
+formation_scene = ExtResource("5_twwsd")
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 100
@@ -37,9 +38,16 @@ offset_bottom = 510.0
 
 [node name="Hud" parent="UI" instance=ExtResource("9_c6b8m")]
 
+[node name="GameOverUI" parent="UI" instance=ExtResource("5_0ka5k")]
+unique_name_in_owner = true
+visible = false
+
+[node name="WinUI" parent="UI" instance=ExtResource("6_ha7wd")]
+unique_name_in_owner = true
+visible = false
+
 [node name="PostFX" type="CanvasLayer" parent="UI"]
 layer = 100
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="UI/PostFX"]
 material = SubResource("ShaderMaterial_03iqk")

@@ -71,7 +71,7 @@ unique_name_in_owner = true
 layout_mode = 2
 value = 100.0
 
-[node name="SFXCheckBox" type="CheckBox" parent="ColorRect/CenterContainer/OptionsMenuVBoxContainer"]
+[node name="CrtCheckBox" type="CheckBox" parent="ColorRect/CenterContainer/OptionsMenuVBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_tgcvl")

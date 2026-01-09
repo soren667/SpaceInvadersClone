@@ -6,9 +6,13 @@ var bullet_scene = preload("res://Scene/bullet.tscn")
 @onready var player = %Player
 @onready var _game_over_ui: GameOverUI = %GameOverUI
 @onready var _win_ui: WinUI = %WinUI
+@onready var crt_fx: CanvasLayer = $UI/PostFX
 
 func _ready() -> void:
 
+	_apply_crt(SettingsManager.crt_enabled)
+	SettingsManager.crt_changed.connect(_apply_crt)
+	
 	GameManager.start_game()
 	if PauseMenu.has_signal("quit_pressed"):
 		PauseMenu.quit_pressed.connect(_on_pause_quit)
@@ -23,7 +27,6 @@ func _ready() -> void:
 	player.shoot_requested.connect(_on_player_shoot)
 
 func _on_player_shoot(spawn_pos: Vector2) -> void:
-	# Scene logic: manage bullets
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = spawn_pos
 	add_child(bullet)
@@ -55,3 +58,6 @@ func _on_game_over() -> void:
 
 func _quit_game() -> void:
 	get_tree().quit(1)
+
+func _apply_crt(enabled: bool) -> void:
+	crt_fx.visible = enabled

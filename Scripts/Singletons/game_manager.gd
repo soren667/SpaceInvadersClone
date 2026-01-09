@@ -1,16 +1,8 @@
 extends Node
-## Generic game manager singleton for score, lives, and game state management.
-##
-## Handles game flow, scoring, lives system, pause state, and persistent save data.
-## Use the provided methods to modify state - direct variable access bypasses validation!
-##
-## Save Path:
-## Windows: %APPDATA%/Godot/app_userdata/[your_project_name]/
-## Linux: ~/.local/share/godot/app_userdata/[your_project_name]/
-## Mac: ~/Library/Application Support/Godot/app_userdata/[your_project_name]/
 
+# Use this as a Guide: https://www.gdquest.com/library/save_game_godot4/#godot-4s-save-methods
 const SAVE_PATH := "user://savegame.save"
-const SAVE_VERSION := "1.0"  # Use semantic versioning: "1.0", "1.1", "2.0", etc.
+const SAVE_VERSION := "1.0"  
 
 # Signals - UI/Scenes can connect to these
 signal score_changed(new_score: int)

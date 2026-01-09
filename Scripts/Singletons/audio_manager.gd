@@ -54,8 +54,8 @@ func _ready() -> void:
 	for key in ui_sounds:
 		sound_cache[key] = ui_sounds[key]
 
-	_load_saved_volumes()
-	print("AudioManager: Initialized")
+	SettingsManager.audio_changed.connect(_apply_settings_volumes)
+	_apply_settings_volumes()
 
 # --- SFX System ---
 
@@ -171,43 +171,7 @@ func set_music_volume(volume: float) -> void:
 func set_sfx_volume(volume: float) -> void:
 	set_bus_volume(SFX_BUS_NAME, volume)
 
-func _load_saved_volumes() -> void:
-	var path := "user://settings.save"
-	if not FileAccess.file_exists(path):
-		return
-
-	var file := FileAccess.open(path, FileAccess.READ)
-	if not file: return
-
-	var json_string := file.get_as_text()
-	file.close()
-
-	var json := JSON.new()
-	var error := json.parse(json_string)
-
-	# 1. Check if JSON is actually valid
-	if error != OK:
-		push_error("AudioManager: JSON Parse Error: ", json.get_error_message())
-		return
-
-	# 2. Check if the data is a Dictionary
-	var data = json.data
-	if typeof(data) != TYPE_DICTIONARY:
-		return
-
-	# 3. Null-safe extraction using .get(key, default)
-	# This ensures that if a key is missing, the game doesn't crash.
-	var master_v = data.get("master_volume", 100)
-	var music_v = data.get("music_volume", 100)
-	var sfx_v = data.get("sfx_volume", 100)
-
-	# Apply volumes (assuming your menu saves 0-100, we convert to 0.0-1.0)
-	set_master_volume(float(master_v) / 100.0)
-	set_music_volume(float(music_v) / 100.0)
-	set_sfx_volume(float(sfx_v) / 100.0)
-
-func save_settings(data: Dictionary) -> void:
-	var file = FileAccess.open("user://settings.save", FileAccess.WRITE)
-	if file:
-		file.store_string(JSON.stringify(data))
-		file.close()
+func _apply_settings_volumes() -> void:
+	set_master_volume(SettingsManager.get_master_linear())
+	set_music_volume(SettingsManager.get_music_linear())
+	set_sfx_volume(SettingsManager.get_sfx_linear())

@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SettingsManager="*res://Scripts/Singletons/settings_manager.gd"
 AudioManager="*res://Scripts/Singletons/audio_manager.gd"
 GameManager="*res://Scripts/Singletons/game_manager.gd"
 PauseMenu="*res://Scene/pause_menu.tscn"

@@ -6,7 +6,7 @@ extends CanvasLayer
 @onready var music_slider: HSlider = %MusicSlider
 @onready var sfx_slider: HSlider = %SFXSlider
 @onready var back_button: Button = %OptionsBackButton
-@onready var sfx_check_box: CheckBox = %SFXCheckBox
+@onready var crt_check_box: CheckBox = %CrtCheckBox
 
 var active_tween: Tween
 
@@ -20,7 +20,7 @@ func _setup_signals() -> void:
 	music_slider.value_changed.connect(_on_volume_changed.bind("music"))
 	sfx_slider.value_changed.connect(_on_volume_changed.bind("sfx"))
 	back_button.pressed.connect(_on_back_pressed)
-	sfx_check_box.toggled.connect(_on_sfx_changed)
+	crt_check_box.toggled.connect(_on_crt_changed)
 
 # --- Visibility ---
 
@@ -28,11 +28,11 @@ func show_menu() -> void:
 	show()
 	AudioManager.play_sfx("maximize_001")
 
-	# Sync sliders with AudioManager's current state
-	# We multiply by 100 because sliders are 0-100 and Audio is 0.0-1.0
-	master_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))) * 100
-	music_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))) * 100
-	sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX"))) * 100
+	master_slider.set_value_no_signal(SettingsManager.master_volume_pct)
+	music_slider.set_value_no_signal(SettingsManager.music_volume_pct)
+	sfx_slider.set_value_no_signal(SettingsManager.sfx_volume_pct)
+
+	crt_check_box.set_pressed_no_signal(SettingsManager.crt_enabled)
 
 	# Entrance Animation
 	if active_tween: active_tween.kill()
@@ -68,14 +68,14 @@ func _on_volume_changed(value: float, bus: String) -> void:
 func _on_back_pressed() -> void:
 	AudioManager.play_sfx("back_001")
 
-	# Ask AudioManager to save its current settings to disk
-	AudioManager.save_settings({
-		"master_volume": master_slider.value,
-		"music_volume": music_slider.value,
-		"sfx_volume": sfx_slider.value
-	})
+	SettingsManager.apply_audio_from_menu(
+		int(master_slider.value),
+		int(music_slider.value),
+		int(sfx_slider.value)
+	)
 
 	hide_menu()
 	
-func _on_sfx_changed(value: bool ) -> void:
-	print("SFX Value:" + str(value))
+func _on_crt_changed(value: bool ) -> void:
+	SettingsManager.set_crt_enabled(value)
+	AudioManager.play_sfx("tick", 0.05)
